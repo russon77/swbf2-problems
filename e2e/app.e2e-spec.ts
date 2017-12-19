@@ -1,13 +1,22 @@
-import { AppPage } from './app.po';
+import { AppHeader, AppPage } from './app.po';
 
 describe('app header', () => {
-  xit('should display the logo', async () => {
+  it('should display the logo', async () => {
     await AppPage.navigateTo();
+    await expect(AppHeader.logo().isPresent()).toBeTruthy();
   });
 
-  xit('should navigate to the Google form for new submissions');
+  it('should navigate to the Google form for new submissions', async () => {
+    await AppPage.navigateTo();
 
-  xit('should navigate to the contact page');
+    await expect(AppHeader.addIssue().getAttribute('href')).toContain('docs.google.com/forms');
+  });
+
+  it('should navigate to the contact page', async () => {
+    await AppPage.navigateTo();
+
+    await expect(AppHeader.contact().getAttribute('href')).toContain('github.com/russon77');
+  });
 });
 
 describe('app stats', () => {
