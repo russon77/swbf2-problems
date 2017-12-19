@@ -14,7 +14,7 @@
 
 <section class="hero is-primary is-medium">
   <div class="hero-body">
-    <div class="container">
+    <div class="container has-text-centered">
       <h1 class="title">
         Star Wars Battlefront 2 (2017) Issues
       </h1>
@@ -31,7 +31,12 @@
       <div class="level-item has-text-centered">
         <div>
           <p class="heading">Issues</p>
-          <p class="title">3,456</p>
+          <p class="title" *ngIf="false">
+            3,456
+          </p>
+          <p class="title">
+            <i class="fa fa-circle-o-notch fa-spin fa-fw"></i>
+          </p>
         </div>
       </div>
       <div class="level-item has-text-centered">
@@ -56,7 +61,22 @@
   </div>
 </section>
 
-<div class="app-main-comments" fxLayout="row">
+<section class="hero">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title">
+        Loading <i class="fa fa-spinner fa-pulse fa-fw"></i>
+      </h1>
+      <h2 class="subtitle">
+        Please be patient, this should only take a moment!
+      </h2>
+    </div>
+  </div>
+</section>
+
+<div class="app-main-comments"
+     fxLayout="row"
+     *ngIf="false">
   <div fxLayout="column" fxLayoutAlign=" end" class="app-menu" fxFlex="20">
     <p class="is-size-7">Sort</p>
     <div class="field">
