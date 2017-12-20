@@ -1,10 +1,19 @@
 # Swbf2Issues
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.0.
+![main](screenshots/base.png?raw=true)
+![search](screenshots/results.png?raw=true)
+
+## Motivation
+
+To enshrine the many faults of EA's Star Wars Battlefront II _before_ the shills take over.
 
 ## Attributions
 
 - Star Wars icons courtesy of [Symbolicons](https://symbolicons.com/).
+
+## Angular CLI
+
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.0.
 
 ## Development server
 
@@ -29,3 +38,7 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## License
+
+MIT
