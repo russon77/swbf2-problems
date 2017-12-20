@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { ApiService, IApiData, IProblem } from './api.service';
 
 @Component({
   selector: 'app-root',
@@ -6,17 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  public days = 0;
+  public data$: Observable<IApiData>;
 
-  constructor() {}
+  constructor(private api: ApiService) {}
 
   public ngOnInit(): void {
-    const now = Date.now();
-    const launch = new Date(2017, 10, 17).getTime();
+    this.data$ = this.api.data();
+    // this.api.data().subscribe();
+  }
 
-    this.days = Math.floor((now - launch) / (1000 /* ms to one second */
-      * 60 /* seconds to one minute */ * 60 /* minutes to one hour */
-      * 24 /* hours to one day */)
-    );
+  public onVote(problem: IProblem): void {
+
   }
 }
