@@ -1,6 +1,9 @@
 # Swbf2Issues
 
 ![main](screenshots/base.png?raw=true)
+
+---
+
 ![search](screenshots/results.png?raw=true)
 
 ## Motivation
