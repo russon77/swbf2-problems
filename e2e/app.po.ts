@@ -51,8 +51,8 @@ export class AppIssues {
     get() {
       return element.all(by.css('app-root .app-main-comments .app-comment'))
         .map(async ef => ({
-          date: await ef.$('.app-comment-timestamp').getAttribute('data-value'),
-          votes: await ef.$('.app-comment-votes').getAttribute('data-value')
+          date: + await ef.$('.app-comment-timestamp').getAttribute('data-value'),
+          votes: + await ef.$('.app-comment-votes').getAttribute('data-value')
         }));
     }
   };
