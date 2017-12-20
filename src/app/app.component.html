@@ -31,16 +31,16 @@
   </div>
 </section>
 
-<section class="hero is-info">
+<section class="hero is-info app-stats">
   <div class="hero-body">
     <nav class="level stats is-info">
       <div class="level-item has-text-centered">
         <div>
           <p class="heading">Issues</p>
-          <p class="title" *ngIf="false">
-            3,456
+          <p class="title app-stats-issues" *ngIf="true">
+            13
           </p>
-          <p class="title">
+          <p class="title" *ngIf="false">
             <i class="fa fa-circle-o-notch fa-spin fa-fw"></i>
           </p>
         </div>
@@ -48,26 +48,27 @@
       <div class="level-item has-text-centered">
         <div>
           <p class="heading">Votes</p>
-          <p class="title">123</p>
+          <p class="title app-stats-votes">123</p>
         </div>
       </div>
       <div class="level-item has-text-centered">
         <div>
-          <p class="heading">Patches</p>
-          <p class="title">123</p>
+          <p class="heading">Current Patch</p>
+          <p class="title app-stats-patches">1.03</p>
         </div>
       </div>
       <div class="level-item has-text-centered">
         <div>
           <p class="heading">Days Since Launch</p>
-          <p class="title">123</p>
+          <p class="title app-stats-days">{{ days }}</p>
         </div>
       </div>
     </nav>
   </div>
 </section>
 
-<section class="hero">
+<section class="hero"
+         *ngIf="false">
   <div class="hero-body">
     <div class="container has-text-centered">
       <h1 class="title">
@@ -82,7 +83,7 @@
 
 <div class="app-main-comments"
      fxLayout="row"
-     *ngIf="false">
+     *ngIf="true">
   <div fxLayout="column" fxLayoutAlign=" end" class="app-menu" fxFlex="20">
     <p class="is-size-7">Sort</p>
     <div class="field">

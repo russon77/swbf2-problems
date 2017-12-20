@@ -1,4 +1,4 @@
-import { AppHeader, AppPage } from './app.po';
+import { AppHeader, AppPage, AppStats } from './app.po';
 
 describe('app header', () => {
   it('should display the logo', async () => {
@@ -20,15 +20,34 @@ describe('app header', () => {
 });
 
 describe('app stats', () => {
-  xit('should display a count of total issues, total votes and patches');
+  it('should display a count of total issues, total votes and patches', async () => {
+    await AppPage.navigateTo();
 
-  xit('should display a count of days since launch');
+    await expect(AppStats.issues.value()).toBeGreaterThanOrEqual(0);
+    await expect(AppStats.votes.value()).toBeGreaterThanOrEqual(0);
+    await expect(AppStats.patches.value()).toBeGreaterThanOrEqual(0);
+  });
 
-  xit('should upvote an issue');
+  it('should display a count of days since launch', async () => {
+    const now = Date.now();
+    const launch = new Date(2017, 10, 17).getTime();
+
+    const expected = Math.floor((now - launch) / (1000 /* ms to one second */
+      * 60 /* seconds to one minute */ * 60 /* minutes to one hour */
+      * 24 /* hours to one day */)
+    );
+
+    await AppPage.navigateTo();
+    const actual = await AppStats.days.value();
+
+    await expect(+actual).toEqual(expected);
+  });
 });
 
 describe('app comments', () => {
   xit('should display a list of issues');
+
+  xit('should upvote an issue');
 
   xit('should sort by date or votes');
 
