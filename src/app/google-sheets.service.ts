@@ -90,6 +90,7 @@ export class GoogleSheetsService {
           );
 
           problems.forEach(problem => problem.timestamp = new Date(problem.timestamp).getTime());
+          problems.forEach(problem => problem.votes = +problem.votes || 0);
 
           return {
             stats,
