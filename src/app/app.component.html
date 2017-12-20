@@ -105,8 +105,8 @@
         <article class="media">
           <figure class="media-left">
             <p class="image is-64x64">
-              <!-- one of enumerated issue type predefined images -->
-              <img src="https://bulma.io/images/placeholders/128x128.png">
+              <img [src]=" 'assets/img/' + swIcons[problem.votes % swIcons.length]"
+                   [alt]="swIcons[problem.votes % swIcons.length]">
             </p>
           </figure>
           <div class="media-content">
@@ -125,14 +125,8 @@
               <div class="level-left">
                 <div class="level-item">
                   <span class="tag app-comment-votes"
-                        [attr.data-value]="problem.votes"
-                        *ngIf="problem.votes">
+                        [attr.data-value]="problem.votes">
                     +{{ problem.votes }}
-                  </span>
-                  <span class="tag app-comment-votes"
-                        [attr.data-value]="0"
-                        *ngIf="!problem.votes">
-                    +0
                   </span>
                 </div>
                 <a class="level-item app-comment-upvote">
