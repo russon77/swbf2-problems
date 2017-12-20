@@ -8,16 +8,24 @@ import { ApiService, IApiData, IProblem } from './api.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+
+  public problemTagColors: {[key: string]: string} = {
+    'Quality Control': 'is-info',
+    'Poor Decision': 'is-warning',
+    'Bug': 'is-danger',
+    'Missing Content': 'is-primary'
+  };
+
+  public categoriesFilter: string[] = [];
+  public sortFilter = 'Votes';
+
   public data$: Observable<IApiData>;
 
   constructor(private api: ApiService) {}
 
   public ngOnInit(): void {
     this.data$ = this.api.data();
-    // this.api.data().subscribe();
   }
 
-  public onVote(problem: IProblem): void {
-
-  }
+  public onVote(problem: IProblem): void {}
 }

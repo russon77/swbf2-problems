@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { environment } from '../environments/environment';
 import 'rxjs/add/operator/map';
-import { IApiData, IStats } from './api.service';
+import { IApiData, IProblem, IStats } from './api.service';
 
 @Injectable()
 export class GoogleSheetsService {
@@ -66,10 +66,34 @@ export class GoogleSheetsService {
             ...this.sheetToArray(response.sheets.filter(sheet => sheet.properties.title === 'Stats')[0], statsColumns, statsColumnsMap)[0],
             daysSinceLaunch
           };
-          
+
+          const problemsColumns = [
+            'Timestamp',
+            'Source URL',
+            'Issue Description',
+            'Issue Type',
+            'Votes'
+          ];
+
+          const problemsColumnsMap = {
+            'Timestamp': 'timestamp',
+            'Source URL': 'sourceUrl',
+            'Issue Description': 'description',
+            'Issue Type': 'issueType',
+            'Votes': 'votes'
+          };
+
+          const problems: IProblem[] = this.sheetToArray(
+            response.sheets.filter(sheet => sheet.properties.title === 'Form Responses')[0],
+            problemsColumns,
+            problemsColumnsMap
+          );
+
+          problems.forEach(problem => problem.timestamp = new Date(problem.timestamp).getTime());
+
           return {
             stats,
-            problems: []
+            problems
           };
         }
       );

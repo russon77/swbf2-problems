@@ -73,7 +73,7 @@
       <div class="field">
         <div class="control has-icons-left">
           <div class="select">
-            <select>
+            <select [(ngModel)]="sortFilter">
               <option>Date</option>
               <option>Votes</option>
             </select>
@@ -87,7 +87,9 @@
       <div class="field">
         <div class="control">
           <div class="select is-multiple">
-            <select multiple size="4">
+            <select multiple
+                    size="4"
+                    [(ngModel)]="categoriesFilter">
               <option>Quality Control</option>
               <option>Poor Decision</option>
               <option>Bug</option>
@@ -99,7 +101,7 @@
     </div>
 
     <div fxFlex="60">
-      <div class="box app-comment" *ngFor="let problem of data.problems">
+      <div class="box app-comment" *ngFor="let problem of data.problems | category:categoriesFilter | sort:sortFilter">
         <article class="media">
           <figure class="media-left">
             <p class="image is-64x64">
@@ -111,7 +113,8 @@
             <div class="content">
               <p>
                 <strong>Anonymous</strong>
-                <small>
+                <small class="app-comment-timestamp"
+                       [attr.data-value]="problem.timestamp">
                   {{ problem.timestamp | date }}
                 </small>
                 <br>
@@ -121,9 +124,18 @@
             <nav class="level is-mobile">
               <div class="level-left">
                 <div class="level-item">
-                  <span class="tag">+{{ problem.votes }}</span>
+                  <span class="tag app-comment-votes"
+                        [attr.data-value]="problem.votes"
+                        *ngIf="problem.votes">
+                    +{{ problem.votes }}
+                  </span>
+                  <span class="tag app-comment-votes"
+                        [attr.data-value]="0"
+                        *ngIf="!problem.votes">
+                    +0
+                  </span>
                 </div>
-                <a class="level-item">
+                <a class="level-item app-comment-upvote">
                   <span class="icon is-small"><i class="fa fa-thumbs-up"></i></span>
                 </a>
                 <a class="level-item"
@@ -133,6 +145,12 @@
                 </a>
               </div>
             </nav>
+          </div>
+          <div class="media-right">
+            <span class="tag app-comment-category"
+                  [ngClass]="problemTagColors[problem.issueType]">
+              {{ problem.issueType }}
+            </span>
           </div>
         </article>
       </div>

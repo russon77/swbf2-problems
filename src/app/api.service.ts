@@ -11,12 +11,7 @@ export interface IStats {
   daysSinceLaunch: number;
 }
 
-export enum IssueTypeEnum {
-  QualityControl,
-  PoorDecision,
-  Bug,
-  MissingContent
-}
+type IssueTypeEnum = 'Quality Control' | 'Poor Decision' | 'Bug' | 'Missing Content';
 
 export interface IProblem {
   timestamp: number;

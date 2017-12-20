@@ -1,4 +1,4 @@
-import { AppHeader, AppPage, AppStats } from './app.po';
+import { AppHeader, AppIssues, AppPage, AppStats } from './app.po';
 
 describe('app header', () => {
   it('should display the logo', async () => {
@@ -45,11 +45,53 @@ describe('app stats', () => {
 });
 
 describe('app comments', () => {
-  xit('should display a list of issues');
+  it('should display a list of issues', async () => {
+    await AppPage.navigateTo();
 
-  xit('should upvote an issue');
+    await expect(AppIssues.count()).toBeGreaterThan(0);
+  });
 
-  xit('should sort by date or votes');
+  xit('should upvote an issue', async () => {
+    await AppPage.navigateTo();
 
-  xit('should filter by category');
+    const previousCount = + await AppIssues.upvote.value(0);
+
+    await AppIssues.upvote.do(0);
+
+    await expect(+ await AppIssues.upvote.value(0)).toEqual(previousCount + 1);
+  });
+
+  it('should sort by date or votes', async () => {
+    await AppPage.navigateTo();
+
+    // check sort by votes
+    await AppIssues.filter.sort('Votes');
+
+    const problemsByVote: {date: number, votes: number}[] = <{date: number, votes: number}[]> await AppIssues.problems.get();
+
+    for (let i = 0; i < problemsByVote.length - 1; i++) {
+      await expect(problemsByVote[i].votes).toBeGreaterThanOrEqual(problemsByVote[i + 1].votes);
+    }
+
+    // check sort by date
+    await AppIssues.filter.sort('Date');
+
+    const problemsByDate: {date: number, votes: number}[] = <{date: number, votes: number}[]> await AppIssues.problems.get();
+
+    for (let i = 0; i < problemsByDate.length - 1; i++) {
+      await expect(problemsByDate[i].date).toBeGreaterThanOrEqual(problemsByDate[i + 1].date);
+    }
+  });
+
+  it('should filter by category', async () => {
+    await AppPage.navigateTo();
+
+    // test selecting a single category
+
+    await AppIssues.filter.category('Bug');
+
+    const categories = await AppIssues.category.list();
+
+    await expect((<string[]> categories).length).toEqual(1);
+  });
 });
