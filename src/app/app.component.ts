@@ -44,6 +44,8 @@ export class AppComponent implements OnInit {
     'red-five.png'
   ];
 
+  public loadingStatus: {[key: string]: 'loading' | 'finished'} = {};
+
   public categoriesFilter: string[] = [];
   public sortFilter = 'Votes';
 
@@ -55,5 +57,20 @@ export class AppComponent implements OnInit {
     this.data$ = this.api.data();
   }
 
-  public onVote(problem: IProblem): void {}
+  public onVote(problem: IProblem): void {
+    // prevent voting more than once on a single issue
+    if (['loading', 'finished'].includes(this.loadingStatus[problem.description])) {
+      return;
+    }
+
+    this.loadingStatus[problem.description] = 'loading';
+
+    this.api.upvote(problem)
+      .subscribe(
+        () => {
+          this.loadingStatus[problem.description] = 'finished';
+          this.data$ = this.api.data();
+        }
+      );
+  }
 }

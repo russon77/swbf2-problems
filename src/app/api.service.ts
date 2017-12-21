@@ -35,5 +35,7 @@ export class ApiService {
     return this.sheetService.data();
   }
 
-  upvote(): Observable<void> {return null;}
+  upvote(problem: IProblem): Observable<void> {
+    return this.sheetService.upvote(problem.description);
+  }
 }

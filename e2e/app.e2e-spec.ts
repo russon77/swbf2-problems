@@ -1,3 +1,4 @@
+import { browser } from 'protractor';
 import { AppHeader, AppIssues, AppPage, AppStats } from './app.po';
 
 describe('app header', () => {
@@ -51,12 +52,14 @@ describe('app comments', () => {
     await expect(AppIssues.count()).toBeGreaterThan(0);
   });
 
-  xit('should upvote an issue', async () => {
+  it('should upvote an issue', async () => {
     await AppPage.navigateTo();
 
     const previousCount = + await AppIssues.upvote.value(0);
 
     await AppIssues.upvote.do(0);
+
+    await browser.sleep(1500);
 
     await expect(+ await AppIssues.upvote.value(0)).toEqual(previousCount + 1);
   });

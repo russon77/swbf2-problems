@@ -130,8 +130,23 @@
                     {{ problem.issueType }}
                   </span>
                 </div>
-                <a class="level-item app-comment-upvote">
-                  <span class="icon is-small"><i class="fa fa-thumbs-up"></i></span>
+                <a class="level-item app-comment-upvote"
+                   (click)="onVote(problem)"
+                   [ngSwitch]="loadingStatus[problem.description]">
+                  <span class="icon is-small"
+                        *ngSwitchCase=" 'loading' ">
+                    <i class="fa fa-circle-o-notch fa-spin fa-fw"></i>
+                  </span>
+
+                  <span class="icon is-small"
+                        *ngSwitchCase=" 'finished' ">
+                    <i class="fa fa-check"></i>
+                  </span>
+
+                  <span class="icon is-small"
+                        *ngSwitchDefault>
+                    <i class="fa fa-thumbs-up"></i>
+                  </span>
                 </a>
                 <a class="level-item"
                    [href]="problem.sourceUrl"

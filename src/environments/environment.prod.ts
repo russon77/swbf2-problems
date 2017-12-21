@@ -1,5 +1,4 @@
 export const environment = {
   production: true,
-  spreadsheetId: '1DXNcS9dnCLShfZ4raFYt3KvHPVUDc2dJus6k6K_m-1A',
-  apiKey: 'AIzaSyAHGn2zYLL178cCt_hLOw6Gu3VRrfeoxdI'
+  api: 'https://script.googleusercontent.com/macros/echo?user_content_key=ASyGIL4TviVhDOJSX9kIyP5W5Mqzq1s9000qpu70Wn2F_-iROQgONJ4ytXkKvh1uxdyTSz6f_JMhS7uRBLtyYBdgKkf0KW_Um5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnBAXt59st4yzZ5hJKr6iY7TyE7TOVHjTUddTyq5EwwP0ZK7UF2RMvmBk63VpWfKUfD3OIm_05AKi&lib=MKiNYmiexZXyAK6Sw_f4Nk-rRb4NaL-y3'
 };
