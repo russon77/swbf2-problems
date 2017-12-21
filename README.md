@@ -13,6 +13,7 @@ To enshrine the many faults of EA's Star Wars Battlefront II _before_ the shills
 ## Attributions
 
 - Star Wars icons courtesy of [Symbolicons](https://symbolicons.com/).
+- Logo courtesy of [flamingtext](http://www5.flamingtext.com/).
 
 ## Angular CLI
 
